@@ -1,0 +1,129 @@
+<div class="ecStartingReport page">
+  <div class="page-top">
+    <div v-for="i in [1,2,4,5].filter(a => a > 1)">{{i}}</div>
+    <img class="pageTopImg" :src="'./img/ecStartingReport/pageTop.png'" alt="">
+  </div>
+  <div class="page-body" v-if="info">
+    <!-- 预警信息 -->
+    <div class="panel ec-info">
+      <div class="panel-body ">
+        江门市{{info.district}}{{info.startTime}}启动{{info.level}}预警，{{info.earlyWarning ?　info.earlyWarning + ',' : ''}}{{info.info}}截止{{info.endTime}}发现内涝点{{info.details.waterPointCount}}处,正在处理{{info.details.waterNotHandle}}处,已完成处理{{info.details.waterHandle}}处，发现防风点{{info.details.windProofCount}}处,正在处理{{info.details.windNotHandle}}处,已完成处理{{info.details.windHandle}}处。累积处理，倾倒树木{{info.details.tree}}棵,路灯{{info.details.streetLamp}}盏,倾倒广告牌{{info.details.billboard}}块广告牌。
+      </div>
+    </div>
+    <!-- 排涝泵房情况 -->
+    <div class="panel">
+      <div class="panel-title">排涝泵房情况</div>
+      <div class="panel-body">
+        {{info.startTime}}至{{info.endTime}}{{info.district}}城区排涝泵站监控统计降雨量如下：{{info.drainageStatistics}}；各雨量监测点统计降雨量如下：{{info.rainfall}}河道监批注测水位情况如下：{{info.pumpRiver}}{{info.endTime}}共{{info.pumpRunningRecordName.size}}个泵房开泵，包括{{info.pumpRunningRecordName.data}}。
+      </div>
+    </div>
+    <!-- 水浸点情况 -->
+    <div class="panel waterInfo">
+      <div class="panel-title">水浸点情况</div>
+      <div class="panel-body">
+        <div class="waterInfo-box">
+          <div class="waterInfo-box-title">
+            布防点现场情况
+          </div>
+          <div class="waterInfo-box-body" v-if="info.lstArmingWater && info.lstArmingWater.length">
+            <div class="waterInfo-status status-red">有积水</div>
+            <div class="waterInfo-row" v-for="(list, listIndex) in info.lstArmingWater">
+              <div class="waterInfo-row" v-for="(item, index) in list.data">
+                <div class="waterInfo-row" v-if="index == 0">{{listIndex + 1}}、{{list.name}}</div>
+                <div class="waterInfo-row">{{item.time}}水浸{{item.height}}cm，
+                  {{item.state == '有积水' ? '排水人员正在排水中' : ''}}
+                  {{item.state == '已处理' ? '处理完毕' : ''}}
+                </div>
+                <div class="waterInfo-img">
+                  <img
+                    @click="previewImg([{url: getImgUrl(item.image)}],1)"
+                    v-lazy="getImgUrl(item.image)"
+                    alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="waterInfo-box-body" v-if="info.lstNoWater && info.lstNoWater.length">
+            <div class="waterInfo-status status-green">无积水</div>
+            <div class="waterInfo-row" v-for="(list, listIndex) in info.lstNoWater">
+              <div class="waterInfo-row" v-for="(item, index) in list.data">
+                <div class="waterInfo-row" v-if="index == 0">{{listIndex + 1}}、{{list.name}}</div>
+                <div class="waterInfo-row">{{item.time}}无积水</div>
+                <div class="waterInfo-img">
+                  <img
+                    @click="previewImg([{url: getImgUrl(item.image)}],1)"
+                    v-lazy="getImgUrl(item.image)"
+                    alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="waterInfo-box-body">
+            <div class="waterInfo-status status-blue">无上报信息</div>
+            <div class="waterInfo-row" v-for="(item, index) in info.lstNoReport">
+              {{index + 1}}、{{item}}：无上报信息
+            </div>
+          </div>
+        </div>
+        <div class="waterInfo-box">
+          <div class="waterInfo-box-title">
+            其他水浸点
+          </div>
+          <div class="waterInfo-box-body" v-if="info.lstOtherWaterData && info.lstOtherWaterData.length">
+            <div class="waterInfo-row" v-for="(list, listIndex) in info.lstOtherWaterData">
+              <div class="waterInfo-row" v-for="(item, index) in list.data">
+                <div class="waterInfo-row" v-if="index == 0">{{listIndex + 1}}、{{list.name}}</div>
+                <div class="waterInfo-row">{{item.time}}水浸{{item.height}}cm，
+                  {{item.state == '有积水' ? '排水人员正在排水中' : ''}}
+                  {{item.state == '已处理' ? '处理完毕' : ''}}
+                </div>
+                <div class="waterInfo-img">
+                  <img
+                    @click="previewImg([{url: getImgUrl(item.image)}],1)"
+                    v-lazy="getImgUrl(item.image)"
+                    alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="waterInfo-box-body" v-else>无</div>
+        </div>
+      </div>
+    </div>
+    <!-- 防风点情况 -->
+    <div class="panel waterInfo">
+      <div class="panel-title">防风点情况</div>
+      <div class="panel-body">
+        <div class="waterInfo-box">
+          <div class="waterInfo-box-title">
+            防风点现场情况
+          </div>
+          <div class="waterInfo-box-body" v-if="info.lstAllWindData && info.lstAllWindData.length">
+            <div class="waterInfo-row" v-for="(list, listIndex) in info.lstAllWindData">
+              <div class="waterInfo-row" v-for="(item, index) in list.data">
+                <div class="waterInfo-row" v-if="index == 0">{{listIndex + 1}}、{{list.name}}</div>
+                <div class="waterInfo-row">{{item.time}}
+                  {{item.state == '有问题' ? '防风抢险人员正在处理险情。' : ''}}
+                  {{item.state == '已处理' ? '处理完毕' : ''}}
+                  {{item.state == '无问题' || item.state == '在路上' ? item.state : ''}}
+                </div>
+                <div class="waterInfo-img">
+                  <img
+                    @click="previewImg([{url: getImgUrl(item.image)}],1)"
+                    v-lazy="getImgUrl(item.image)"
+                    alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="waterInfo-box-body" v-else>无</div>
+        </div>
+      </div>
+    </div>
+    <!-- 已经被你看光了 ~ 。 ~ -->
+    <div class="page-noMall">--已经到底了--</div>
+  </div>
+  <div class="page-body" v-else>
+    <div class="no-ec">{{errMsg}}</div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "useBuiltIns": "entry",
+      "targets": {
+        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+      }
+    }]
+    // "stage-1"
+  ],
+  "plugins": [
+    "transform-vue-jsx"
+    // 使用transform-runtime会导致amd失效, 改为useBuiltIns + babel-polyfill
+    // "transform-runtime"
+  ],
+  "env": {
+    // "plugins": ["dynamic-import-node"]
+  }
+}

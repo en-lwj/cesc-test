@@ -1,0 +1,11 @@
+@import "./common.scss";
+/**
+* 公共组件
+*/
+@import "./components/previewImg.scss";
+
+/**
+* 模块
+*/
+// 事中报告模块
+@import "./modules/ecStartingReport/index.scss";

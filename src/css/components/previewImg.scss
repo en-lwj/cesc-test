@@ -1,0 +1,20 @@
+.previewImg{
+  position: fixed !important;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1000 !important;
+  background: rgb(0, 0, 0);
+  .swiper-zoom-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+    width: 100%;
+  }
+  .swiper-pagination{
+    color: #fff;
+    font-size: 0.18rem;
+  }
+}

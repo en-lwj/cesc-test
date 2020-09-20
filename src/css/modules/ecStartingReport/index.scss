@@ -1,0 +1,127 @@
+.ecStartingReport{
+  // background: url(/img/ecStartingReport/pageTop.png);
+  &.page, .page{
+    height: 100%;
+    background-color: #0B5495;
+    overflow: auto;
+    &-body{
+      padding: 0.15rem;
+    }
+    &-noMall{
+      margin-top: 0.15rem;
+      font-size: 0.11rem;
+      color: #3C78D1;
+      text-align: center;
+    }
+  }
+  .panel{
+    background-color: #3C78D1;
+    border-radius: 0.1rem;
+    padding: 0.15rem;
+    position: relative;
+    & + .panel{
+      margin-top: 0.15rem;
+    }
+    &::before{
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0.05rem;
+      right: 0.05rem;
+      left: 0.05rem;
+      bottom: 0.05rem;
+      border: 1px dashed #AADDFA;
+      border-radius: 0.1rem;
+      pointer-events: none;
+    }
+    &-title{
+      padding: 0.05rem 0 0.15rem;
+      line-height: 1;
+      color: #FFFFFF;
+      font-size: 0.2rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    &-body {
+      background-color: #E6F6FF;
+      border-radius: 0.1rem;
+      color: #0B5495;
+      padding: 0.1rem;
+      font-size: 0.14rem;
+      line-height: 0.25rem;
+    }
+  }
+  .no-ec {
+    text-align: center;
+    font-size: 0.3rem;
+    color: #fff;
+    word-break: break-all;
+  }
+  // 顶部图片
+  .pageTopImg{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  /* 预警信息 */
+  .ec-info .panel-body{
+    font-size: 0.15rem;
+  }
+  // 水浸点情况
+  .waterInfo {
+    &-box{
+      & + .waterInfo-box{
+        margin-top: 0.1rem;
+      }
+      &-title{
+        line-height: 0.3rem;
+        padding: 0 0.1rem;
+        border-radius: 0.1rem;
+        background-color: #0B5495;
+        display: inline-block;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        font-size: 0.15rem;
+        margin-bottom: 0.1rem;
+        font-weight: 500;
+      }
+      &-body{
+        & + .waterInfo-box-body{
+          margin-top: 0.1rem;
+        }
+      }
+    }
+    &-status{
+      font-size: 0.14rem;
+      line-height: 0.28rem;
+      padding: 0 0.1rem;
+      border-radius: 0 0.2rem 0.2rem 0;
+      display: inline-block;
+      position: relative;
+      left: -0.1rem;
+      margin-bottom: 0.1rem;
+      font-weight: 500;
+      &.status-red{
+        color: #E20400;
+        background-color: #FF65634D;
+      }
+      &.status-green{
+        color: #007A04;
+        background-color: #97FFB3;
+      }
+      &.status-blue{
+        color: #004CFF;
+        background-color: #8ACCFF;
+      }
+    }
+    &-img{
+      img{
+        width: 100%;
+        height: auto;
+        border-radius: 0.1rem;
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
