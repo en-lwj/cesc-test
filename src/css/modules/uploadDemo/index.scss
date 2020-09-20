@@ -1,0 +1,28 @@
+.uploadDemo{
+  &.page, .page{
+    height: 100%;
+    // background-color: #0B5495;
+    overflow: auto;
+    padding: 0.1rem;
+  }
+  .appUploadImgs{
+    font-size: 0.2rem;
+    &-box{
+      padding: 0 !important;
+    }
+    .imgWrapper, .iconWrapper{
+      width: 1rem !important;
+      height: 1rem !important;
+      border-radius: 0.1rem !important;
+      .img{
+        border-radius: 0.1rem;
+      }
+      .iconDel{
+        width: 0.2rem;
+        height: 0.2rem;
+        top: -0.08rem;
+        right: -0.08rem;
+      }
+    }
+  }
+}

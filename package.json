@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "cesc-app-components": "^1.0.1",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.1.2",
     "mint-ui": "^2.2.13",
@@ -28,7 +29,8 @@
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "babel-core": "^6.24.1",
-    "babel-loader": "^6.4.1",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-component": "^1.1.1",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-syntax-jsx": "6.18.0",
     "babel-plugin-transform-runtime": "6.23.0",

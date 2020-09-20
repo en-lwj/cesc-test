@@ -1,0 +1,36 @@
+<div class="appLogin">
+    <div class="loginPanel">
+        <div class="loginPanel-top">
+            <img class="loginPanel-top-logo" :src="'./img/appLogin/logo.png'">
+            <div class="loginPanel-top-title">登录页</div> 
+            <div class="loginPanel-top-supplement">WELCOME</div> 
+        </div>
+        <div class="loginPanel-body">
+            <div class="forms" style="height: auto;">
+                <div class="x-row form-row">
+                    <div class="x-col x-col-center x-col-fixed">
+                        <i class="iconfont icon-yonghu loginLogo"></i>
+                    </div>
+                    <div class="x-col x-col-center">
+                        <input type="text" class="col-input" v-model="userName" placeholder="请输入账户"/>
+                    </div>
+                    <div class="x-col x-col-center x-col-fixed">
+                    </div>
+                </div>
+                <div class="x-row form-row">
+                    <div class="x-col x-col-center x-col-fixed">
+                        <i class="iconfont icon-mima loginLogo"></i>
+                    </div>
+                    <div class="x-col x-col-center">
+                        <input :type="type" class="col-input" autocomplete="off" v-model="password" placeholder="请输入密码"/>
+                    </div>
+                    <!-- <div class="x-col x-col-center x-col-fixed" @click="typeToggle">
+                        <i class="iconfont icon-yanjing-kai" v-show="type === 'text'"></i>
+                        <i class="iconfont icon-yanjing-bi" v-show="type === 'password'"></i>
+                    </div> -->
+                </div>
+                <mt-button class="btn-login" size="large" type="primary" shape="circle" @click.native="login">提交</mt-button>
+            </div>
+        </div>
+    </div>
+</div>

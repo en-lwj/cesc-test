@@ -21,7 +21,7 @@ const config = {
       'node_modules'
     ],
     alias: {
-      '@':getPathFromRoot('./src'),
+      '@': getPathFromRoot('./src'),
       services: getPathFromRoot('./src/services'),
       modules: getPathFromRoot('./src/modules'),
       components: getPathFromRoot('./src/components'),
@@ -45,53 +45,65 @@ const config = {
       // use: ['style-loader', 'css-loader', 'sass-loader']
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: [{
-          loader: getPathFromRoot('./build/transform.js'),
-        }, {
-          loader: 'css-loader',
-          options: {
-            minimize: true,
-          }
-        }, {
-          loader: 'postcss-loader',
-        }, {
-          loader: 'resolve-url-loader',
-          options: {
-            sourceMap: true,
-          }
-        }, {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true,
-            sourceMapContents: false
-          }
-        }]
+        use: [
+          {
+            loader: getPathFromRoot('./build/loader/cssUrlLoader.js'),
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true,
+            }
+          }, {
+            loader: 'postcss-loader',
+          }, {
+            loader: 'resolve-url-loader',
+            options: {
+              sourceMap: true,
+            }
+          }, {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              sourceMapContents: false
+            }
+          }]
       })
-      },
-      {
-        test: /\.html$/,
-        use: 'html-loader'
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif)$/,
-        loader: 'url-loader',
-        // exclude: /css/,
-        options: {
-          limit: 8192,
-          name: './_imgs/[name].[ext]',
-          fallback: 'file-loader', // 指定当目标文件的大小超过limit选项中设置的限制时使用的什么laoder处理文件，默认使用file-loader
+    },
+    // {
+    //   test: /\.html$/,
+    //   use: 'html-loader'
+    // },
+    {
+      test: /\.html$/,
+      exclude: getPathFromRoot('./src/index.html'),
+      loader: 'vue-template-loader',
+      options: {
+        transformAssetUrls: {
+          img: 'src'
         }
-      },
-      {
-        // 专供iconfont方案使用的，后面会带一串时间戳，需要特别匹配到
-        test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
-        use: 'file-loader?name=./static/fonts/[name].[ext]',
       }
+    },
+    {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: 'babel-loader',
+    },
+    {
+      test: /\.(png|jpg|jpeg|gif)$/,
+      loader: 'url-loader',
+      // exclude: /css/,
+      options: {
+        limit: 8192,
+        name: './_imgs/[name].[ext]',
+        fallback: 'file-loader', // 指定当目标文件的大小超过limit选项中设置的限制时使用的什么laoder处理文件，默认使用file-loader
+      }
+    },
+    {
+      // 专供iconfont方案使用的，后面会带一串时间戳，需要特别匹配到
+      test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
+      use: 'file-loader?name=./static/fonts/[name].[ext]',
+    }
     ]
   },
   plugins: [
@@ -118,7 +130,7 @@ const config = {
   ]
 }
 
-if(process.argv.includes('--report')) {
+if (process.argv.includes('--report')) {
   // 观察模式--查看包大小
   config.plugins.push(new BundleAnalyzerPlugin())
 }

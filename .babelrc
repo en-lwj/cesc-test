@@ -10,10 +10,18 @@
     // "stage-1"
   ],
   "plugins": [
-    "transform-vue-jsx"
+    "transform-vue-jsx",
+    [
+      "component",
+      {
+        "libraryName": "cesc-app-components",
+        "libDir": "src/release/components"
+      }
+    ]
     // 使用transform-runtime会导致amd失效, 改为useBuiltIns + babel-polyfill
     // "transform-runtime"
   ],
+
   "env": {
     // "plugins": ["dynamic-import-node"]
   }

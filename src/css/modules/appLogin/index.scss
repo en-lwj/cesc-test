@@ -1,0 +1,84 @@
+.appLogin {
+  // background-color: #fff;
+  height: 100%;
+  position: relative;
+  background: url(/img/appLogin/bg.png) #fff no-repeat;
+  background-size: 100% 100%;
+  overflow: auto;
+  font-size: 0.2rem;
+
+  .loginPanel{
+    &-top{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-top: 0.75rem;
+      &-logo{
+        width: 0.8rem;
+        height: auto;
+      }
+      &-title{
+        font-weight: 600;
+        color: #fff;
+        font-size: 0.3rem;
+        line-height: 0.5rem;
+      }
+      &-supplement{
+        // font-weight: 700;
+        color: #f2a001;
+        font-size: 0.2rem;
+        line-height: 1.2;
+      }
+    }
+    &-body{
+      padding-top: 0.6rem;
+      .forms{
+        padding: 0 0.25rem;
+        .form-row{
+          display: flex;
+          align-items: center;
+          background: rgba(255,255,255,0.22);
+          border-radius: 1.5rem;
+          min-height: 0.55rem;
+          padding: 0 0.15rem;
+
+          & + .form-row{
+            margin-top: 0.22rem;
+          }
+          .x-col-fixed {
+            width: 0.35rem;
+            text-align: center;
+            i {
+              font-size: 0.2rem;
+              color: #fff;
+            }
+          }
+          .col-input{
+            height: 0.3rem;
+            font-size: 0.18rem;
+            width: 100%;
+            border: none;
+            color: #fff !important;
+            text-align: center;
+            background: transparent;
+            outline: none;
+            &::-webkit-input-placeholder{
+              color: #fff;
+            }
+          }
+        }
+        .btn-login{
+          margin-top: 0.5rem;
+          width: 100%;
+          font-size: 0.21rem;
+          height: 0.5rem;
+          line-height: 0.5rem;
+          background: #f2a001;
+          color:#fff;
+          border-radius: 0.5rem;
+        }
+      }
+    }
+  }
+}

@@ -1,13 +1,18 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const path = require('path');
 const rootPath = path.resolve(__dirname, '../')
 const getPathFromRoot = (...args) => {
   return path.resolve(rootPath, ...args)
 }
+const smp = new SpeedMeasurePlugin({
+  // outputFormat: 'humanVerbose' // 产生人类可读输出的更详细的版本
+});
 
-module.exports = {
+const config = {
   entry: {
     'app': [
       getPathFromRoot('./src/app.js'),
@@ -117,3 +122,11 @@ module.exports = {
   devtool: "cheap-source-map"
   // devtool: "cheap-module-source-map"
 }
+
+
+if(process.argv.includes('--report')) {
+  // 观察模式--查看包大小
+  config.plugins.push(new BundleAnalyzerPlugin())
+}
+
+module.exports = smp.wrap(config)

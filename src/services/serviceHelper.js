@@ -1,5 +1,6 @@
 define(['config', 'utils/axiosHelper'], function (config, axiosHelper) {
     console.log('当前环境：', RUNNING_ENV)
+    let userToken = ''
     let { 
         service, 
         basicUrl, 
@@ -18,14 +19,36 @@ define(['config', 'utils/axiosHelper'], function (config, axiosHelper) {
         gwxjUrl: gwxjUrl,
         psgsUrl: psgsUrl,
         wsEmerUrl: wsEmerUrl,
+        //登录
+        login: psgsUrl + '/login/loginValidNew2',
+        refreshToken: ewaterUrl + '/login/updateToken',
+
         // 应急事中报告
         getWaterOutInfoData: emerCommandUrl + '/submittedInfo/getWaterOutInfoData',// 事中报告-获取数据
         getWaterOutImage: emerCommandUrl + '/submittedInfo/getWaterOutImage',// 事中报告-下载图片
+
+        /**
+         * psgs附件相关
+         */
+        deleteFilePsgs: psgsUrl + '/uploadFile/deleteById',//删除图片
+        uploadFilePsgs: psgsUrl + '/uploadFile/batchUploadFile',//上传附件
+        getFileListPsgs: psgsUrl + '/uploadFile/getUploadFilesByBizId',//获取图片类型和id
+        getFilePsgs: psgsUrl + '/uploadFile/downloadFileById',//获取图片
+        
     };
     //初始化axios
     let $axios = axiosHelper.initAxios();
     window.$axios = $axios
     return {
+        setToken: function (token) {
+            userToken = token;
+        },
+        getToken: function () {
+            return userToken;
+        },
+        getUrl: function (id) {
+            return serviceEndpoint[id];
+        },
         getPath: function (connectionObj) {
             var url;
             if (!( connectionObj instanceof Object ) && !!serviceEndpoint[connectionObj]) {

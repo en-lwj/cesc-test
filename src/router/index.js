@@ -6,16 +6,22 @@ Vue.use(Router)
 export const constantRouterMap = [
   {
     path: '/',
-    redirect: 'ecStartingReport',
+    redirect: 'login',
+  },
+  {
+    path: '/login',
+    component: resolve => require(['modules/appLogin/index'], resolve),
+    name: 'appLogin',
+  },
+  {
+    path: '/uploadDemo',
+    component: resolve => require(['modules/uploadDemo/index'], resolve),
+    name: 'uploadDemo',
+  },
+  {
+    path: '/ecStartingReport',
     component: resolve => require(['modules/ecStartingReport/index'], resolve),
-    children: [
-      {
-        path: 'ecStartingReport',
-        component: resolve => require(['modules/ecStartingReport/index'], resolve),
-        name: 'ecStartingReport',
-        meta: {}
-      }
-    ]
+    name: 'ecStartingReport',
   }
 ]
 
