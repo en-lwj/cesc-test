@@ -1,3 +1,7 @@
 <!-- 图片|照片上传组件 -->
-<app-upload-imgs v-model="imgList" compress="0.5" limit="2" 
-:on-add="handleUpload" :on-remove="deleteImg" :on-preview="showBigImg" :auto-upload="false"></app-upload-imgs>
+<app-upload-imgs v-model="value" 
+  :on-add="handleUpload" 
+  :on-remove="deleteImg" 
+  :on-preview="showBigImg" 
+  v-bind="$attrs">
+</app-upload-imgs>

@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "cesc-app-components": "^1.0.1",
+    "cesc-app-components": "^1.0.2",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.1.2",
     "mint-ui": "^2.2.13",

@@ -25,6 +25,8 @@ import './css/main.scss'
 // 引入cesc-app-components
 import {appUploadImgs} from 'cesc-app-components'
 Vue.use(appUploadImgs);
+// import cescAppComponents from 'cesc-app-components'
+// Vue.use(cescAppComponents);
 
 const previewImg = require('components/previewImg')
 
