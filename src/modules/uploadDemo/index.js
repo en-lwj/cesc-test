@@ -17,16 +17,8 @@ module.exports = Vue.extend({
       }
     }
   },
-  created: function () {
-    this.getFileList(this.row.id, 'clearDredgeOrderBefore', files => {
-      let arr = files || []
-      let imgList = arr.map(file => ({
-        id: file.id,
-        url: this.getImgUrl(file.id),
-        status: 'success'
-      }))
-      this.imgs = imgList
-    })
+  created() {
+    this.init()
   },
   activated() {
 
@@ -35,6 +27,17 @@ module.exports = Vue.extend({
 
   },
   methods: {
+    init() {
+      this.getFileList(this.row.id, 'clearDredgeOrderBefore', files => {
+        let arr = files || []
+        let imgList = arr.map(file => ({
+          id: file.id,
+          url: this.getImgUrl(file.id),
+          status: 'success'
+        }))
+        this.imgs = imgList
+      })
+    },
     // 获取附件列表
     getFileList(bizId, bizType, cb) {
       this.loading = true
@@ -43,7 +46,11 @@ module.exports = Vue.extend({
         bizType: bizType
       }, res => {
         this.loading = false
-        cb(res)
+        let arr = res || []
+        arr.sort((b, a) => {
+          return b.id - a.id
+        })
+        cb(arr)
       }, err => {
         this.loading = false
         this.$message.error('获取附件列表失败')
