@@ -1,8 +1,1 @@
-<swiper class="previewImg" :options="swiperOption" v-if="visible">
-    <swiper-slide v-for="(item, index) in swiperSlides.picList" :key="index">
-        <div class="swiper-zoom-container">
-            <img :src="item.url" alt="" style="max-width: 100%">
-          </div>
-    </swiper-slide>
-    <div class="swiper-pagination" slot="pagination"></div>
-</swiper>
+<cesc-app-picture-preview ref="cescAppPicturePreview" :ready="regEvents"></cesc-app-picture-preview>

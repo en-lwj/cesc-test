@@ -1,7 +1,9 @@
 <!-- 图片|照片上传组件 -->
-<app-upload-imgs v-model="value" 
+<cesc-app-upload-imgs 
+  class="diyUploadImgs"
+  v-model="value" 
   :on-add="handleUpload" 
   :on-remove="deleteImg" 
   :on-preview="showBigImg" 
   v-bind="$attrs">
-</app-upload-imgs>
+</cesc-app-upload-imgs>

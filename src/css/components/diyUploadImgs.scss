@@ -1,0 +1,22 @@
+.diyUploadImgs{
+  &.cescAppUploadImgs{
+    font-size: 0.2rem;
+    padding: 0.1rem;
+    .cescAppUploadImgs-box{
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+    .imgWrapper, .iconWrapper{
+      border-radius: 0.05rem !important;
+      .img{
+        border-radius: 0.05rem;
+      }
+      .iconDel{
+        width: 0.2rem;
+        height: 0.2rem;
+        top: -0.08rem;
+        right: -0.08rem;
+      }
+    }
+  }
+}

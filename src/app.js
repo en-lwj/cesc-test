@@ -10,9 +10,9 @@ import './router/intercept' // 路由拦截器
 window.eventHelper = require('./utils/eventHelper')
 
 // 引入swiper
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
-Vue.use(VueAwesomeSwiper)
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.css'
+// Vue.use(VueAwesomeSwiper)
 // 引入mint-ui
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
@@ -23,8 +23,9 @@ Vue.use(MintUI)
 import './css/main.scss'
 
 // 引入cesc-app-components
-import {appUploadImgs} from 'cesc-app-components'
-Vue.use(appUploadImgs);
+import {cescAppPicturePreview, cescAppUploadImgs} from 'cesc-app-components'
+Vue.use(cescAppPicturePreview);
+Vue.use(cescAppUploadImgs);
 // import cescAppComponents from 'cesc-app-components'
 // Vue.use(cescAppComponents);
 
